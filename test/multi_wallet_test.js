@@ -3,16 +3,16 @@
  * Module dependencies.
  */
 
-import { defaults } from 'lodash';
-import Client from '../src/index';
-import RpcError from '../src/errors/rpc-error';
-import config from './config';
+const _ = require('lodash');
+const Client = require('../src/index');
+const RpcError = require('../src/errors/rpc-error');
+const config = require('./config');
 
 /**
  * Test instance.
  */
 
-const client = new Client(defaults({ version: '0.17.0', wallet: 'wallet1' }, config.bitcoinMultiWallet));
+const client = new Client(_.defaults({ version: '0.17.0', wallet: 'wallet1' }, config.bitcoinMultiWallet));
 
 /**
  * Test `Client`.

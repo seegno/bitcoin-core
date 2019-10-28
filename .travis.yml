@@ -1,5 +1,13 @@
 language: bash
 
+env:
+  - NODE_IMAGE=7-alpine
+  - NODE_IMAGE=8-alpine
+  - NODE_IMAGE=9-alpine
+  - NODE_IMAGE=10-alpine
+  - NODE_IMAGE=11-alpine
+  - NODE_IMAGE=12-alpine
+
 script:
   - docker-compose run --rm sut
 

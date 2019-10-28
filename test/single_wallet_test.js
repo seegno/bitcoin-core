@@ -3,10 +3,10 @@
  * Module dependencies.
  */
 
-import { defaults } from 'lodash';
-import Client from '../src/index';
-import RpcError from '../src/errors/rpc-error';
-import config from './config';
+const _ = require('lodash');
+const Client = require('../src/index');
+const RpcError = require('../src/errors/rpc-error');
+const config = require('./config');
 
 /**
  * Test instance.
@@ -77,7 +77,7 @@ describe('Single Wallet', () => {
       });
 
       it('should support named parameters', async () => {
-        const client = new Client(defaults({ version: '0.17.0' }, config.bitcoin));
+        const client = new Client(_.defaults({ version: '0.17.0' }, config.bitcoin));
 
         const mainWalletBalance = await client.getBalance({ dummy: '*', minconf: 0 });
         const mainWalletBalanceWithoutNamedParameters = await client.getBalance('*', 0);
@@ -137,13 +137,13 @@ describe('Single Wallet', () => {
           await client.sendToAddress(address, 0.1);
         }
 
-        let transactions = await new Client(defaults({ version: '0.17.0' }, config.bitcoin)).listTransactions();
+        let transactions = await new Client(_.defaults({ version: '0.17.0' }, config.bitcoin)).listTransactions();
 
         transactions.should.be.an.Array();
         transactions.length.should.be.greaterThanOrEqual(5);
 
         // Make sure `count` is read correctly.
-        transactions = await new Client(defaults({ version: '0.17.0' }, config.bitcoin)).listTransactions({ count: 1 });
+        transactions = await new Client(_.defaults({ version: '0.17.0' }, config.bitcoin)).listTransactions({ count: 1 });
 
         transactions.should.be.an.Array();
         transactions.should.have.length(1);
