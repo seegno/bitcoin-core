@@ -54,7 +54,8 @@ class Client {
     timeout = 30000,
     username,
     version,
-    wallet
+    wallet,
+    useWalletURL = false,
   } = {}) {
     if (!_.has(networks, network)) {
       throw new Error(`Invalid network name "${network}"`, { network });
@@ -73,6 +74,7 @@ class Client {
     };
     this.timeout = timeout;
     this.wallet = wallet;
+    this.useWalletURL = useWalletURL
 
     // Version handling.
     if (version) {
@@ -147,7 +149,7 @@ class Client {
     return this.parser.rpc(await this.request.postAsync({
       auth: _.pickBy(this.auth, _.identity),
       body: JSON.stringify(body),
-      uri: `${multiwallet && this.wallet ? `/wallet/${this.wallet}` : '/'}`
+      uri: `${(this.useWalletURL || (multiwallet && this.wallet)) ? `/wallet/${this.wallet}` : '/'}`
     }));
   }
 

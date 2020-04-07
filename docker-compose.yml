@@ -38,6 +38,7 @@ bitcoin-core-multi-wallet:
     -rpcallowip=172.17.0.0/16
     -rpcallowip=192.168.0.0/16
     -rpcpassword=bar
+    -wallet
     -wallet=wallet1
     -wallet=wallet2
     -rpcport=18453
